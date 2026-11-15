@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+data/*.csv
+data/*.csv.part
+data/*.zip
+data/*.7z
+.DS_Store
+runs/jump_only.pt

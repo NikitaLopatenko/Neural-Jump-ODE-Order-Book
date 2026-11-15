@@ -1,0 +1,442 @@
+{
+  "data": "LOBSTER AMZN 2012-06-21 level 10 sample",
+  "caveat": "One free sample day. Not a trading result.",
+  "fee_bps": 0.5,
+  "cost": "Taker: full quoted spread plus the fee, charged only when the model trades. Entry can be delayed by 1 microsecond, 1 ms, or 5 ms. Score is the mid-price move. Information ratio is mean/std of that pnl summed into 1-second bins.",
+  "horizons_ms": [
+    50,
+    100,
+    250
+  ],
+  "split_seconds_after_midnight": {
+    "train": [
+      34200.017459617,
+      43199.695886653
+    ],
+    "test": [
+      48600.263398457,
+      57599.95935965
+    ]
+  },
+  "median_mid": 222.655,
+  "median_spread": 0.12999999999999545,
+  "test_median_spread": 0.11000000000001364,
+  "jump_ode": {
+    "val": {
+      "model": {
+        "50ms": {
+          "n": 45480,
+          "accuracy": 0.9268909410729991,
+          "flat_base_rate": 0.9304529463500439,
+          "up_rate": 0.03766490765171504,
+          "down_rate": 0.031882145998240984,
+          "trade_rate": 0.006464379947229552,
+          "mean_net_bps_per_event": -0.0347744303808609,
+          "mean_net_bps_per_trade": -5.379391475243381,
+          "mean_gross_bps_per_trade": -0.4493987063358577
+        },
+        "100ms": {
+          "n": 45480,
+          "accuracy": 0.9196789797713281,
+          "flat_base_rate": 0.92207563764292,
+          "up_rate": 0.044986807387862794,
+          "down_rate": 0.032937554969217235,
+          "trade_rate": 0.0048592788038698325,
+          "mean_net_bps_per_event": -0.026829056032308472,
+          "mean_net_bps_per_trade": -5.52120121425063,
+          "mean_gross_bps_per_trade": -0.5460262209126565
+        },
+        "250ms": {
+          "n": 45480,
+          "accuracy": 0.9014072119613017,
+          "flat_base_rate": 0.9061565523306948,
+          "up_rate": 0.054859278803869836,
+          "down_rate": 0.038984168865435355,
+          "trade_rate": 0.007233948988566403,
+          "mean_net_bps_per_event": -0.04504065269380807,
+          "mean_net_bps_per_trade": -6.226288402779304,
+          "mean_gross_bps_per_trade": -0.4061267066658277
+        }
+      },
+      "model_entry_delayed_5ms": {
+        "50ms": {
+          "n": 45480,
+          "accuracy": 0.9268909410729991,
+          "flat_base_rate": 0.9304529463500439,
+          "up_rate": 0.03766490765171504,
+          "down_rate": 0.031882145998240984,
+          "trade_rate": 0.006464379947229552,
+          "mean_net_bps_per_event": -0.036375042727915884,
+          "mean_net_bps_per_trade": -5.626996405665356,
+          "mean_gross_bps_per_trade": -0.16105283697355458
+        },
+        "100ms": {
+          "n": 45480,
+          "accuracy": 0.9196789797713281,
+          "flat_base_rate": 0.92207563764292,
+          "up_rate": 0.044986807387862794,
+          "down_rate": 0.032937554969217235,
+          "trade_rate": 0.0048592788038698325,
+          "mean_net_bps_per_event": -0.02846489828852499,
+          "mean_net_bps_per_trade": -5.857844226977903,
+          "mean_gross_bps_per_trade": -0.2711415197147808
+        },
+        "250ms": {
+          "n": 45480,
+          "accuracy": 0.9014072119613017,
+          "flat_base_rate": 0.9061565523306948,
+          "up_rate": 0.054859278803869836,
+          "down_rate": 0.038984168865435355,
+          "trade_rate": 0.007233948988566403,
+          "mean_net_bps_per_event": -0.04665343036612015,
+          "mean_net_bps_per_trade": -6.449234082222324,
+          "mean_gross_bps_per_trade": -0.2567473574377127
+        }
+      },
+      "imbalance": {
+        "50ms": {
+          "n": 45480,
+          "accuracy": 0.13021108179419524,
+          "flat_base_rate": 0.9304529463500439,
+          "up_rate": 0.03766490765171504,
+          "down_rate": 0.031882145998240984,
+          "trade_rate": 0.8786719437115216,
+          "mean_net_bps_per_event": -5.667799045014634,
+          "mean_net_bps_per_trade": -6.450415408820019,
+          "mean_gross_bps_per_trade": 0.0758444421196341
+        },
+        "100ms": {
+          "n": 45480,
+          "accuracy": 0.12906772207563763,
+          "flat_base_rate": 0.92207563764292,
+          "up_rate": 0.044986807387862794,
+          "down_rate": 0.032937554969217235,
+          "trade_rate": 0.8786719437115216,
+          "mean_net_bps_per_event": -5.65687643590341,
+          "mean_net_bps_per_trade": -6.437984592985512,
+          "mean_gross_bps_per_trade": 0.08827525795414065
+        },
+        "250ms": {
+          "n": 45480,
+          "accuracy": 0.13150835532102023,
+          "flat_base_rate": 0.9061565523306948,
+          "up_rate": 0.054859278803869836,
+          "down_rate": 0.038984168865435355,
+          "trade_rate": 0.8786719437115216,
+          "mean_net_bps_per_event": -5.636527520556019,
+          "mean_net_bps_per_trade": -6.414825875453874,
+          "mean_gross_bps_per_trade": 0.11143397548577806
+        }
+      },
+      "directional_auc": {
+        "50ms": {
+          "auc": 0.7788481591078367,
+          "n_moves": 3163
+        },
+        "100ms": {
+          "auc": 0.7951390384311698,
+          "n_moves": 3544
+        },
+        "250ms": {
+          "auc": 0.7596745662786374,
+          "n_moves": 4268
+        }
+      },
+      "taker_information_ratio": {
+        "1us": {
+          "50ms": {
+            "information_ratio": -0.15288997610892982,
+            "n_bins": 3990,
+            "mean_bps": -0.3963762139653017,
+            "std_bps": 2.5925585447334676,
+            "bin_seconds": 1.0
+          },
+          "100ms": {
+            "information_ratio": -0.13252576410680691,
+            "n_bins": 3990,
+            "mean_bps": -0.3058108943231552,
+            "std_bps": 2.307558053969733,
+            "bin_seconds": 1.0
+          },
+          "250ms": {
+            "information_ratio": -0.09619497250168886,
+            "n_bins": 3990,
+            "mean_bps": -0.5133957104046094,
+            "std_bps": 5.337032664525123,
+            "bin_seconds": 1.0
+          }
+        },
+        "1ms": {
+          "50ms": {
+            "information_ratio": -0.15288816405627662,
+            "n_bins": 3990,
+            "mean_bps": -0.41664238214998034,
+            "std_bps": 2.7251447796614157,
+            "bin_seconds": 1.0
+          },
+          "100ms": {
+            "information_ratio": -0.13297241785991093,
+            "n_bins": 3990,
+            "mean_bps": -0.3286170125424168,
+            "std_bps": 2.471317118476565,
+            "bin_seconds": 1.0
+          },
+          "250ms": {
+            "information_ratio": -0.09850559234381677,
+            "n_bins": 3990,
+            "mean_bps": -0.5293098567156793,
+            "std_bps": 5.373399054017305,
+            "bin_seconds": 1.0
+          }
+        },
+        "5ms": {
+          "50ms": {
+            "information_ratio": -0.15190407559597444,
+            "n_bins": 3990,
+            "mean_bps": -0.41462078778586836,
+            "std_bps": 2.729490872178127,
+            "bin_seconds": 1.0
+          },
+          "100ms": {
+            "information_ratio": -0.13200399368470034,
+            "n_bins": 3990,
+            "mean_bps": -0.32445703613085625,
+            "std_bps": 2.4579334842386804,
+            "bin_seconds": 1.0
+          },
+          "250ms": {
+            "information_ratio": -0.09891505550767984,
+            "n_bins": 3990,
+            "mean_bps": -0.5317789506393846,
+            "std_bps": 5.376117395982221,
+            "bin_seconds": 1.0
+          }
+        }
+      },
+      "hawkes_cancel_intensity_mean": 8.244621276855469,
+      "hawkes_cancel_intensity_when_next_is_cancel": 8.352187156677246,
+      "hawkes_cancel_intensity_when_next_is_not": 8.149665832519531,
+      "eval_ms_per_event": 0.1928047960781367,
+      "n_events": 45480,
+      "train": {
+        "train_loss": [
+          0.926835964036609,
+          0.7130988853525179
+        ],
+        "seconds": 232.02034266665578,
+        "events_scored": 109757,
+        "ms_per_event_train": 1.0569728703711645,
+        "parameters": 4840,
+        "predict_flow": true
+      }
+    },
+    "test": {
+      "model": {
+        "50ms": {
+          "n": 114508,
+          "accuracy": 0.9229224159010724,
+          "flat_base_rate": 0.9295071086736298,
+          "up_rate": 0.0373161700492542,
+          "down_rate": 0.03317672127711601,
+          "trade_rate": 0.011448981730534111,
+          "mean_net_bps_per_event": -0.04714232651831406,
+          "mean_net_bps_per_trade": -4.117599942760569,
+          "mean_gross_bps_per_trade": -0.2589882151698026
+        },
+        "100ms": {
+          "n": 114506,
+          "accuracy": 0.9114456884355405,
+          "flat_base_rate": 0.9169999825336663,
+          "up_rate": 0.04417235778037832,
+          "down_rate": 0.03882765968595532,
+          "trade_rate": 0.010200338846872653,
+          "mean_net_bps_per_event": -0.04264695581144563,
+          "mean_net_bps_per_trade": -4.180935207316262,
+          "mean_gross_bps_per_trade": -0.33316850436271256
+        },
+        "250ms": {
+          "n": 114506,
+          "accuracy": 0.8920056590921,
+          "flat_base_rate": 0.8982760728695439,
+          "up_rate": 0.05257366426213474,
+          "down_rate": 0.04915026286832131,
+          "trade_rate": 0.012689291390844147,
+          "mean_net_bps_per_event": -0.05932105299237425,
+          "mean_net_bps_per_trade": -4.674890911180182,
+          "mean_gross_bps_per_trade": -0.36004014876065554
+        }
+      },
+      "model_entry_delayed_5ms": {
+        "50ms": {
+          "n": 114508,
+          "accuracy": 0.9229224159010724,
+          "flat_base_rate": 0.9295071086736298,
+          "up_rate": 0.0373161700492542,
+          "down_rate": 0.03317672127711601,
+          "trade_rate": 0.011448981730534111,
+          "mean_net_bps_per_event": -0.05035108969479162,
+          "mean_net_bps_per_trade": -4.397866192807932,
+          "mean_gross_bps_per_trade": -0.19159642856975329
+        },
+        "100ms": {
+          "n": 114506,
+          "accuracy": 0.9114456884355405,
+          "flat_base_rate": 0.9169999825336663,
+          "up_rate": 0.04417235778037832,
+          "down_rate": 0.03882765968595532,
+          "trade_rate": 0.010200338846872653,
+          "mean_net_bps_per_event": -0.04560901066099083,
+          "mean_net_bps_per_trade": -4.4713230948179925,
+          "mean_gross_bps_per_trade": -0.2530726246354994
+        },
+        "250ms": {
+          "n": 114506,
+          "accuracy": 0.8920056590921,
+          "flat_base_rate": 0.8982760728695439,
+          "up_rate": 0.05257366426213474,
+          "down_rate": 0.04915026286832131,
+          "trade_rate": 0.012689291390844147,
+          "mean_net_bps_per_event": -0.06296943904284437,
+          "mean_net_bps_per_trade": -4.96240783691668,
+          "mean_gross_bps_per_trade": -0.32035428490078505
+        }
+      },
+      "imbalance": {
+        "50ms": {
+          "n": 114508,
+          "accuracy": 0.15926398155587382,
+          "flat_base_rate": 0.9295071086736298,
+          "up_rate": 0.0373161700492542,
+          "down_rate": 0.03317672127711601,
+          "trade_rate": 0.846884060502323,
+          "mean_net_bps_per_event": -4.832824268797752,
+          "mean_net_bps_per_trade": -5.706594909734394,
+          "mean_gross_bps_per_trade": 0.07631188105163364
+        },
+        "100ms": {
+          "n": 114506,
+          "accuracy": 0.1617033168567586,
+          "flat_base_rate": 0.9169999825336663,
+          "up_rate": 0.04417235778037832,
+          "down_rate": 0.03882765968595532,
+          "trade_rate": 0.8468813861282378,
+          "mean_net_bps_per_event": -4.814863547754413,
+          "mean_net_bps_per_trade": -5.685404859075895,
+          "mean_gross_bps_per_trade": 0.09749868270930574
+        },
+        "250ms": {
+          "n": 114506,
+          "accuracy": 0.16331021955181388,
+          "flat_base_rate": 0.8982760728695439,
+          "up_rate": 0.05257366426213474,
+          "down_rate": 0.04915026286832131,
+          "trade_rate": 0.8468813861282378,
+          "mean_net_bps_per_event": -4.790568093762387,
+          "mean_net_bps_per_trade": -5.656716716450515,
+          "mean_gross_bps_per_trade": 0.12618682533468523
+        }
+      },
+      "directional_auc": {
+        "50ms": {
+          "auc": 0.7600756157455061,
+          "n_moves": 8072
+        },
+        "100ms": {
+          "auc": 0.7564778706456299,
+          "n_moves": 9504
+        },
+        "250ms": {
+          "auc": 0.7319498113372388,
+          "n_moves": 11648
+        }
+      },
+      "taker_information_ratio": {
+        "1us": {
+          "50ms": {
+            "information_ratio": -0.15329253015835023,
+            "n_bins": 7500,
+            "mean_bps": -0.7197564699945476,
+            "std_bps": 4.695313393620965,
+            "bin_seconds": 1.0
+          },
+          "100ms": {
+            "information_ratio": -0.12717524046614337,
+            "n_bins": 7500,
+            "mean_bps": -0.6511109762860525,
+            "std_bps": 5.119793553363805,
+            "bin_seconds": 1.0
+          },
+          "250ms": {
+            "information_ratio": -0.1202295476506922,
+            "n_bins": 7500,
+            "mean_bps": -0.9056821991926406,
+            "std_bps": 7.5329419172727485,
+            "bin_seconds": 1.0
+          }
+        },
+        "1ms": {
+          "50ms": {
+            "information_ratio": -0.15523925465943614,
+            "n_bins": 7500,
+            "mean_bps": -0.753225276544613,
+            "std_bps": 4.852028426682662,
+            "bin_seconds": 1.0
+          },
+          "100ms": {
+            "information_ratio": -0.12937754601961396,
+            "n_bins": 7500,
+            "mean_bps": -0.681264570444466,
+            "std_bps": 5.265709478994018,
+            "bin_seconds": 1.0
+          },
+          "250ms": {
+            "information_ratio": -0.12151757355868618,
+            "n_bins": 7500,
+            "mean_bps": -0.9333903650492932,
+            "std_bps": 7.681114243105899,
+            "bin_seconds": 1.0
+          }
+        },
+        "5ms": {
+          "50ms": {
+            "information_ratio": -0.15362372528270635,
+            "n_bins": 7500,
+            "mean_bps": -0.7687470105028265,
+            "std_bps": 5.004090410437179,
+            "bin_seconds": 1.0
+          },
+          "100ms": {
+            "information_ratio": -0.12887989140510395,
+            "n_bins": 7500,
+            "mean_bps": -0.6963340499663221,
+            "std_bps": 5.402968937780666,
+            "bin_seconds": 1.0
+          },
+          "250ms": {
+            "information_ratio": -0.12180672426104776,
+            "n_bins": 7500,
+            "mean_bps": -0.9613838116053249,
+            "std_bps": 7.8926990068705365,
+            "bin_seconds": 1.0
+          }
+        }
+      },
+      "hawkes_cancel_intensity_mean": 8.69255542755127,
+      "hawkes_cancel_intensity_when_next_is_cancel": 8.840104103088379,
+      "hawkes_cancel_intensity_when_next_is_not": 8.56291389465332,
+      "eval_ms_per_event": 0.1906004801621972,
+      "n_events": 114511,
+      "train": {
+        "train_loss": [
+          0.926835964036609,
+          0.7130988853525179
+        ],
+        "seconds": 232.02034266665578,
+        "events_scored": 109757,
+        "ms_per_event_train": 1.0569728703711645,
+        "parameters": 4840,
+        "predict_flow": true
+      }
+    }
+  }
+}
