@@ -1,48 +1,48 @@
-# Куда сдвинется цена в ближайшие доли секунды
+# Which way the price moves in the next fraction of a second
 
-В стакане заявки приходят не ровным потоком, а рывками. Между двумя событиями ничего не происходит. В момент события состояние рынка прыгает: кто-то поставил заявку, снял её или произошла сделка.
+Orders in a book do not arrive as a smooth stream. They arrive in jerks. Between two events nothing happens. At an event the state of the market jumps: someone places an order, cancels one, or a trade prints.
 
-Модель живёт в том же ритме. Между тиками скрытое состояние медленно ползёт. На тике оно прыгает. Из состояния после прыжка она говорит, пойдёт микроцена вверх, вниз или останется на месте через 50, 100 и 250 миллисекунд. Будущие тики она при этом не читает.
+The model lives on that same clock. Between ticks a hidden state drifts. On a tick it jumps. From the state after the jump it says whether the microprice will be up, down, or flat at 50, 100, and 250 milliseconds. It does not read future ticks to do that.
 
-Отдельно она оценивает, насколько плотным будет следующий поток событий. Это интенсивность: не «что случится», а «как часто такое случается». Для отмен интенсивность почти не отличает пачку отмен от обычной секунды.
+Separately, it estimates how dense the next stream of events will be. That is an intensity: not “what will happen,” but “how often this kind of thing happens.” For cancellations, the intensity barely separates a burst of cancels from an ordinary second.
 
-Данные — один день одной акции, Amazon, 21 июня 2012, лента LOBSTER. Это разбор старой публичной ленты, не торговый результат.
+The data is one day of one stock, Amazon, 21 June 2012, a LOBSTER feed. This is a reading of an old public tape. It is not a trading result.
 
-## Знак цены модель различает
+## The model can tell the sign
 
-На второй половине дня, которой сеть не видела при обучении, среди случаев, где цена всё-таки сдвинулась:
+On the afternoon, which the network did not see during training, and only on the rows where the price actually moved:
 
-| Горизонт | Движений | AUC |
+| Horizon | Moves | AUC |
 | --- | --- | --- |
-| 50 мс | 8 072 | 0.760 |
-| 100 мс | 9 504 | 0.756 |
-| 250 мс | 11 648 | 0.732 |
+| 50 ms | 8,072 | 0.760 |
+| 100 ms | 9,504 | 0.756 |
+| 250 ms | 11,648 | 0.732 |
 
-AUC 0.5 — это монетка. Порог задания был 0.65. Он взят и на 50 мс, и на 250 мс. Большинство строк при этом плоские: цена чаще стоит, чем едет. Модель торгует примерно в 1% тиков.
+An AUC of 0.5 is a coin flip. The requested limit was 0.65. It is met at 50 ms and at 250 ms. Most rows are still flat: the price sits more often than it moves. The model trades on about 1% of ticks.
 
-Проверка, что она не подглядывает в будущее, тоже пройдена. Если испортить ленту после момента i, ответ до этого момента не меняется.
+The check that it does not look into the future also passes. If the tape after time i is corrupted, the answer up to that time does not change.
 
-## Деньги после спреда
+## Money after the spread
 
-Угадать направление мало. Чтобы заработать на этом как тейкер, нужно оплатить весь спред и ещё 0.5 базисного пункта комиссии. Спред в тот день был около 5 базисных пунктов. Один тик его не покрывает.
+Guessing the direction is not enough. To make money as a taker, the trade has to pay the whole spread plus 0.5 basis points of fee. The spread that day was about 5 basis points. One tick does not cover it.
 
-На графике сверху обе стратегии на одной шкале. Правило «торгуй, если в стакане перекос» платит спред почти на каждом тике и уходит на −556 тысяч базисных пунктов. Модель на этой шкале почти лежит на нуле. Снизу та же модель отдельно: она тоже в минусе, около −5 600 базисных пунктов за полдня. Минус меньше, потому что она почти не входит в сделку.
+On the top panel both strategies share one scale. The rule “trade when the book is lopsided” pays the spread on almost every tick and ends at −556 thousand basis points. On that scale the model lies almost on zero. The bottom panel is the model alone. It is also down, by about −5,600 basis points over the half day. The loss is smaller because it rarely enters a trade.
 
-![Накопительный результат тейкера за тестовый день](runs/pnl_drawdown.png)
+![Cumulative taker result over the test afternoon](runs/pnl_drawdown.png)
 
-Information ratio, среднее к разбросу по секундам, около −0.15 на горизонте 50 мс и −0.12 на 250 мс. Знак отрицательный и почти не зависит от задержки в 1 микросекунду, 1 миллисекунду или 5.
+The information ratio, the mean divided by the scatter of one-second bins, is about −0.15 at 50 ms and −0.12 at 250 ms. The sign is negative, and it barely changes between a delay of 1 microsecond, 1 millisecond, or 5 milliseconds.
 
-Очередь мейкера здесь не моделируется. В строке ленты нет нашего места в очереди, и выдумывать исполнение нельзя.
+A maker queue is not modeled. A LOBSTER row does not say where we stand in line, so a fill is not invented.
 
-## Интенсивность отмен
+## Cancellation intensity
 
-Синяя линия — насколько модель ждёт отмену. Оранжевые штрихи — отмены, которые в ленте действительно случились. Линия поднимается у пачки справа и между пачками не падает до нуля. В среднем интенсивность перед отменой выше всего на 3%: 8.84 против 8.56. Голова работает, отдельного предсказания каскада нет.
+The blue line is how strongly the model expects a cancel. The orange ticks are cancels that actually printed. The line rises at the burst on the right and does not fall to zero between bursts. On average, the intensity just before a cancel is only 3% higher: 8.84 versus 8.56. The head is alive. It does not separate a cascade.
 
-![Интенсивность отмен на самой плотной секунде](runs/hawkes_cancel.png)
+![Cancellation intensity on the busiest cancel second](runs/hawkes_cancel.png)
 
-## Запуск
+## Run
 
-Файлы ленты в репозиторий не входят.
+The tape files are not in the repository.
 
 ```bash
 python3.12 -m venv .venv
@@ -52,4 +52,4 @@ python -m unittest discover -s tests -t .
 python -m src.train --no-ablation --epochs 2
 ```
 
-Таблица — `runs/metrics.json`. Комиссия и задержка считаются в `src/latency_simulator.py`.
+The table is `runs/metrics.json`. Fees and delay are computed in `src/latency_simulator.py`.
